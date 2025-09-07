@@ -4,8 +4,7 @@
  * Reads a Google Sheet with home maintenance tasks and sends email reminders
  * for upcoming or overdue items.
  * 
- * Ideal for beginner/intermediate scripters looking to automate household task reminders.
- * Note that authorizing this script ONLY authorizing for your user on your file. 
+ * Note that authorizing this script ONLY authorizes it for your user on your Sheet.
  * 
  * Setup: Set your email in USER_CONFIG below, then run main() to test.
  *    First time, you will need to grant permissions to this script.  See instructions in README.
@@ -27,6 +26,13 @@ const DEFAULT_CONFIG = {
   daysDueThreshold: 7, // items due within this many days will trigger reminder
   daysOverdueThreshold: 14, // items overdue by this many days or more are flagged as overdue
   
+  columns: { // column header names to look for in sheet (case-insensitive partial match)
+    maintenance: "Maintenance",
+    due: "Next due",
+    frequency: "Frequency",
+    archived: "Archived"
+  },
+
   emailSubject: "🏠House maintenance due: {count} item(s)", // email subject template ({count} gets auto-filled)
   emailFooter: "\nSee instructions and update Last Done date when complete in {url}.\n\n Thanks for the house love. 🔧❤️🔧", // footer template ({url} gets autofilled)
   emailBodyHeader: "⚠️The following maintenance is {status}:", // header for each section ({status} gets autofilled w/ DUE or OVERDUE)
@@ -38,12 +44,6 @@ const DEFAULT_CONFIG = {
   statusLabels: { // section headers
     due: "DUE",
     overdue: "OVERDUE"
-  },
-  columns: { // column header names to look for (case-insensitive partial match)
-    maintenance: "Maintenance",
-    due: "Next due",
-    frequency: "Frequency",
-    archived: "Archived"
   }
 };
 // ======= END CONFIG ======= //

@@ -1,18 +1,18 @@
 # Home Maintenance Reminder Script
 
-A simple way to send email reminders for upcoming and overdue home maintenance tasks from a Google Sheet.
+A simple system that sends you email reminders for upcoming home maintenance tasks, managed in a Google Sheet.
 
 ## Quick Setup
 
 ### 1. Create Your Google Sheet
-1. Make a copy of Google Sheet https://docs.google.com/spreadsheets/d/1CWVOvbmrKbkni3k78G8RhObeJL5Ly3q1kw-DJyv3hvE/copy?usp=sharing including the script.
+1. Make a copy of the Google Sheet [Template](https://docs.google.com/spreadsheets/d/1CWVOvbmrKbkni3k78G8RhObeJL5Ly3q1kw-DJyv3hvE/copy?usp=sharing) _including_ the script.
 
    NOTE: No data is shared. This script runs only on your sheet from your account.    
-2. Populate the "house_log" sheet with your maintenance tasks and the frequency (in months) that you want a reminder that items are due.
+2. Populate the "house_log" sheet with your maintenance tasks and the frequency that you want a reminder each item is due.
 
 ### 2. Set Up the Script
 1. If you made a copy of the sheet with the script, Go to **Extensions > Apps Script** from the menu bar. The script should be visible.
-2. If you set up a new Google sheet, Go to **Extensions > Apps Script**, then replace the code completely with the contents of [Code.js](Code.js).
+2. If you prefer to make your own Google sheet, Go to **Extensions > Apps Script**, then replace the default code completely with the contents of [Code.js](Code.js).
 3. **Set your email** in `USER_CONFIG` at the top:
    ```javascript
    const USER_CONFIG = {
@@ -34,8 +34,10 @@ A simple way to send email reminders for upcoming and overdue home maintenance t
    Once you verify the email was received, update the `Last Done` column for the task from the reminder with today's date.
 5. Run `main()` once more to see how the completed item is no longer flagged as due.
 6. Select `setupSchedule` from the function dropdown and click **Run**. This will set up the script on its automatic schedule. You're done!
-7. Run `setupSchedule` again only if you want to change the schedule settings. 
-8. To turn off the email reminders, run `endSchedule` once from the Apps Script Editor to delete the recurring job.
+
+#### Schedule changes
+- Run `setupSchedule` once, whenever you want to change the schedule settings. 
+- To turn off emails, run `endSchedule` once from the Apps Script Editor to delete the recurring job.
 
 ## Configuration Options
 
